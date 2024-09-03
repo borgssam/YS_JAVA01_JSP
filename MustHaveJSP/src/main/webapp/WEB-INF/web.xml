@@ -14,7 +14,7 @@
   <param-name>INIT_PARAM</param-name>
   <param-value>web.xml에 저장한초기값</param-value>  
   </context-param>
-  
+  <!-- 
   <error-page>
   <error-code>404</error-code>
   <location>/02/Exception.jsp</location>
@@ -26,5 +26,5 @@
   <error-page>
   <error-code>500</error-code>
   <location>/02/Exception.jsp</location>
-  </error-page>
+  </error-page> -->
 </web-app>
