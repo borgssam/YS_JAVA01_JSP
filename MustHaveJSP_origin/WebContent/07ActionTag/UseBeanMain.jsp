@@ -9,7 +9,7 @@
 <body>
     <h2>useBean 액션 태그</h2>
     <h3>자바빈즈 생성하기</h3>
-    <jsp:useBean id="person" class="common.Person" scope="request" />
+    <jsp:useBean id="person" class="common3.Person" scope="request" />
 
     <h3>setProperty 액션 태그로 자바빈즈 속성 지정하기</h3>
     <jsp:setProperty name="person" property="name" value="임꺽정" /> 

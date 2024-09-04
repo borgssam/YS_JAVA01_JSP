@@ -1,11 +1,10 @@
 <%@page import="utils.CookieManager"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
 	String loginId = CookieManager.readCookie(request, "loginId");
 	String cookieCheck = "";
-	if(loginId.equals("") == false){
+	if(loginId.equals("") == false) {
 		cookieCheck = "checked";
 	}
 %>
