@@ -1,4 +1,4 @@
-package utils;
+package utils2;
 
 public class BoardPage {
     public static String pagingStr(int totalCount, int pageSize, int blockPage,

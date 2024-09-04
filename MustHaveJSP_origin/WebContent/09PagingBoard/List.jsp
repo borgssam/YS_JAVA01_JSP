@@ -3,7 +3,7 @@
 <%@ page import="java.util.Map"%>
 <%@ page import="model1.board.BoardDAO"%>
 <%@ page import="model1.board.BoardDTO"%>
-<%@ page import="utils.BoardPage"%>
+<%@ page import="utils2.BoardPage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%

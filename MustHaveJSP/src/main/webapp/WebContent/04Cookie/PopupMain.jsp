@@ -51,6 +51,11 @@ $(function() {
 </head>
 <body>
 <h2>팝업 메인 페이지</h2>
+
+<%
+out.print("<script>alert(\"안녕하세요\");</script>");
+%>
+
 <%
     for (int i = 1; i <= 10; i++) {
         out.print("현재 팝업창은 " + popupMode + " 상태입니다.<br/>");

@@ -1,4 +1,4 @@
-<%@ page import="utils.JSFunction"%>
+<%@ page import="utils2.JSFunction"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
