@@ -5,8 +5,32 @@
 <%
 	String work_mode = request.getParameter("work_mode");
 	System.out.println("work_mode:"+work_mode);
-	
-	if("ADD".equals(work_mode)){
+	if("DEL".equals(work_mode)) {
+		OracleConn jdbc = new OracleConn();
+		try{
+			String book_num = request.getParameter("book_num");
+			String sql = "DELETE FROM book WHERE num = ?";
+			PreparedStatement psmt = jdbc.con.prepareStatement(sql);
+			psmt.setString(1, book_num);
+			
+			int inResult = psmt.executeUpdate();
+			System.out.println(inResult + "행이 삭제되었습니다.");
+			if(inResult>0){
+				response.sendRedirect("BookList.jsp");		
+			} else {
+				request.getRequestDispatcher("BookDetail.jsp?loginErr=1").forward(request,response);			
+			}
+			
+		} catch(Exception e){
+			System.out.println(e.getMessage());	
+			request.getRequestDispatcher("BookDetail.jsp?loginErr=2").forward(request,response);		
+		} finally{
+			jdbc.close();
+			
+		}
+		
+		
+	} else if("ADD".equals(work_mode)){
 		OracleConn jdbc = new OracleConn();
 		try{
 

@@ -36,7 +36,7 @@ while(rs.next()){
 	int pub_year   = rs.getInt("pub_year");
 %>	
 	<tr>
-		<td><%=title %></td>
+		<td><a href="./BookDetail.jsp?num=<%=num%>"><%=title %></a></td>
 		<td><%=content %></td>
 		<td><%=writer %></td>
 		<td><%=pub_year %></td>
