@@ -14,17 +14,22 @@
   <param-name>INIT_PARAM</param-name>
   <param-value>web.xml에 저장한초기값</param-value>  
   </context-param>
-  <!-- 
-  <error-page>
-  <error-code>404</error-code>
-  <location>/02/Exception.jsp</location>
-  </error-page>
-  <error-page>
-  <error-code>405</error-code>
-  <location>/02/Exception.jsp</location>
-  </error-page>
-  <error-page>
-  <error-code>500</error-code>
-  <location>/02/Exception.jsp</location>
-  </error-page> -->
+
+  <!-- DB접속정보 -->
+  <context-param>
+    <param-name>OracleDriver</param-name>
+    <param-value>oracle.jdbc.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>OracleURL</param-name>
+    <param-value>jdbc:oracle:thin:@localhost:1521:xe</param-value>
+  </context-param>
+  <context-param>
+    <param-name>OracleId</param-name>
+    <param-value>musthave</param-value>
+  </context-param>
+  <context-param>
+    <param-name>OraclePwd</param-name>
+    <param-value>1234</param-value>
+  </context-param>
 </web-app>
