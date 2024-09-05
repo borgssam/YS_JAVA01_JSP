@@ -52,5 +52,54 @@ while(rs.next()) {
 jdbc.close();
 %>
 
+<!--  게시판 목록  -->
+<h2>게시판 목록</h2>
+
+<%
+JDBConnect jdbc2 = new JDBConnect(application);
+
+String sql2 = "SELECT num, title, content, m.name, postdate, visitcount FROM board b join member m on b.id = m.id";
+Statement stmt2 = jdbc2.con.createStatement();
+
+ResultSet rs2 = stmt2.executeQuery(sql2);
+%>
+<table border="1">
+<thead>
+<tr>
+<th>번호</th>
+<th>제목</th>
+<th>내용</th>
+<th>글쓴이</th>
+<th>작성일</th>
+<th>조회수</th>
+</tr>
+</thead>
+<tbody>
+<%
+
+while(rs2.next()) {
+
+int num = rs2.getInt("num");
+String title = rs2.getString("title");
+String content = rs2.getString("content");
+String name = rs2.getString("name");
+int visitcount = rs2.getInt("visitcount");
+java.sql.Date postdate  = rs2.getDate("postdate");
+%>
+<tr>
+<td><%=num %></td>
+<td><%=title %></th>
+<td><%=content %></td>
+<td><%=name %></td>
+<td><%=postdate %></td>
+<td><%=visitcount %></td>
+</tr>
+<%} %>
+</tbody>
+</table>
+
+
+
 </body>
 </html>
+
