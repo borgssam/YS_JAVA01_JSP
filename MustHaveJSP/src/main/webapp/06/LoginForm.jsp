@@ -8,8 +8,16 @@
 </head>
 <body>
 <h2>로그인페이지</h2>
+<%--
 아이디 : <%= session.getAttribute("UserId") %><br/>
-이름 : <%= session.getAttribute("UserName") %><br/>
+이름   : <%= session.getAttribute("UserName") %><br/>
+메시지 : <%= session.getAttribute("LoginErrMsg") %><br/> 
+--%>
+<%
+if(request.getAttribute("LoginErrMsg") != null){
+	out.println(request.getAttribute("LoginErrMsg") + "<br/>");
+}
+%>
 <% 
 if(session.getAttribute("UserId")  == null){
 //	로그인화면
@@ -33,13 +41,14 @@ if(session.getAttribute("UserId")  == null){
 	   패스워드 : <input type = "text" name="user_pw"/><br/>
 	   <input type="submit" value = "로그인"/>
 	</form> 
+
 <% 	
 } else {
 // ooo님 로그인 하셨습니다.
 // [로그아웃]
 %>
-	<%= session.getAttribute("UserName") %>님 로그인 하셨습니다.<br/>
-	[로그아웃]<br/>
+<%= session.getAttribute("UserName") %>님 로그인 하셨습니다.<br/>
+<a href="Logout.jsp"> [로그아웃] </a>
 <% 		
 }
 %>

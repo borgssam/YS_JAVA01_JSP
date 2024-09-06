@@ -17,7 +17,7 @@ String oraclePwd    = application.getInitParameter("OraclePwd");
 MemberDAO dao = new MemberDAO(oracleDriver,oracleURL,oracleId,oraclePwd);
 MemberDTO memberDTO = dao.getMemberDTO(userId, userPwd);
 dao.close();
-
+System.out.print("로그인 아이디:"+memberDTO.getId());
 // 회원의 아이디 값으로 로그인 성공실패처리
 if(memberDTO.getId() != null){
 	//로그인 성공
@@ -30,7 +30,10 @@ if(memberDTO.getId() != null){
 	//로그인 실패
 	//request에 에러메시지 등록
 	//로그인폼으로 포워드
-	
+	System.out.print("로그인 실패");
+	request.setAttribute("LoginErrMsg", "사용자정보가 일치하지 않습니다.");
+	RequestDispatcher dispatcher = request.getRequestDispatcher("LoginForm.jsp");
+	dispatcher.forward(request,response);	
 }
 %>
 아이디
