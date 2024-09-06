@@ -18,7 +18,6 @@
 	Statement stmt = jdbc.con.createStatement();
 	
 	ResultSet rs = stmt.executeQuery(sql);
-
 %>
 <table border="1">
 <thead>

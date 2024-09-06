@@ -34,7 +34,6 @@ public class JDBConnect {
 
 	//2번생성자
 	public JDBConnect(String driver, String url, String id, String pwd) {
-
 		try {
 			//JDBC 드라이버로드
 			Class.forName(driver);
