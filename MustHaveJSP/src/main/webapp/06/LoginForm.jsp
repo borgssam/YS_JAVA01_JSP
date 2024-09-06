@@ -8,26 +8,40 @@
 </head>
 <body>
 <h2>로그인페이지</h2>
-
-<script>
-function validateForm(form){
-	if(!form.user_id.value){
-		alert("아이디를 입력하세요");
-		return false;
+아이디 : <%= session.getAttribute("UserId") %><br/>
+이름 : <%= session.getAttribute("UserName") %><br/>
+<% 
+if(session.getAttribute("UserId")  == null){
+//	로그인화면
+%>
+	<script>
+	function validateForm(form){
+		if(!form.user_id.value){
+			alert("아이디를 입력하세요");
+			return false;
+		}
+		if(!form.user_pw.value){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
 	}
-	if(!form.user_pw.value){
-		alert("비밀번호를 입력하세요");
-		return false;
-	}
+	</script>
+	
+	<form action="LoginProcess.jsp" method="post" name="loginFrm"
+	   onsubmit="return validateForm(this);">
+	   아이디 : <input type = "text" name="user_id" /><br/>
+	   패스워드 : <input type = "text" name="user_pw"/><br/>
+	   <input type="submit" value = "로그인"/>
+	</form> 
+<% 	
+} else {
+// ooo님 로그인 하셨습니다.
+// [로그아웃]
+%>
+	<%= session.getAttribute("UserName") %>님 로그인 하셨습니다.<br/>
+	[로그아웃]<br/>
+<% 		
 }
-</script>
-
-<form action="LoginProcess.jsp" method="post" name="loginFrm"
-   onsubmit="return validateForm(this);">
-   아이디 : <input type = "text" name="user_id" /><br/>
-   패스워드 : <input type = "text" name="user_pw"/><br/>
-   <input type="submit" value = "로그인"/>
-</form>   
-
+%>
 </body>
 </html>
