@@ -28,6 +28,7 @@ out.print("검색결과:"+totalCount);
 List<BoardDTO> boardLists = dao.selectList(param);
 
 // db접속해제
+dao.close();
 %>    
     
     
@@ -99,7 +100,7 @@ if(boardLists.isEmpty()) {
 </table>
 
 <table border="1" width="90%">
-<tr align="right"><td ><button type="button" onclick="">글쓰기</button> </td></tr>
+<tr align="right"><td ><button type="button" onclick="location.href='Write.jsp'">글쓰기</button> </td></tr>
 </table>
 </body>
 </html>
