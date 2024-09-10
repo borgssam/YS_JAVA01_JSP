@@ -75,5 +75,24 @@ public class BoardDAO extends JDBConnect {
 	
 	}
 	
+	public int insertBoard(BoardDTO dto) {
+		int result = 0;		
+		String query ="INSERT INTO board ( num,title,content,id,visitcount) VALUES (SEQ_BOARD_NUM.NEXTVAL,?,?,?,0)";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getId());
+			
+			result = psmt.executeUpdate();					
+		} catch(Exception e) {
+			System.out.println("게시물 입력중 예외발생");
+			e.printStackTrace();			
+		}
+		
+		return result;
+		
+	}
+	
 
 }
