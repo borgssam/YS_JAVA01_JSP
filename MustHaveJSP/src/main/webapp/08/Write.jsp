@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 로그인여부를 체크  -->   
+<%@ include file="./IsLoggedIn.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +14,12 @@ function validateForm(form){
 </script>
 </head>
 <body>
+
+<!-- 메뉴 -->
+<jsp:include page="../common/Link.jsp" />
+
+<h2>글씨기(Write)</h2>
+
 <form name = "writeFrm" method="post" action="WriteProcess.jsp" 
 onsubmit="return validateForm(this);">
 <table border="1" width="90%">
