@@ -78,14 +78,16 @@ if(boardLists.isEmpty()) {
 </tr>
 <%
 } else {
+	int vitualNum = totalCount+1;
 	for(BoardDTO dto: boardLists){
+		vitualNum--;
 %>
 <tr>
-	<td>1</td>
-	<td>노인고바다</td>
-	<td>헤밍웨이</td>
-	<td>2</td>
-	<td>2024-09-09</td>
+	<td><%=vitualNum %></td>
+	<td><%= dto.getTitle() %></td>
+	<td><%= dto.getName() %></td>
+	<td><%= dto.getVisitcount() %></td>
+	<td><%= dto.getPostdate() %></td>
 </tr>
 <%
 	}
