@@ -8,8 +8,11 @@
 </head>
 <body>
 
+<!-- 메뉴 -->
+<jsp:include page="../common/Link.jsp" />
 <h2>목록보기(List)</h2>
 
+<!-- 검색 -->
 <form method="get">
 	<table border="1" width="90%">
 		<tr>
@@ -24,6 +27,7 @@
 		</tr>
 	</table>
 </form>
+<!-- 목록 -->
 <table border="1" width="90%">
 <thead>
 <tr>

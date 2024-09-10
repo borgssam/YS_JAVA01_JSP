@@ -7,6 +7,8 @@
 <title>로그인폼</title>
 </head>
 <body>
+<!-- 메뉴 -->
+<jsp:include page="../common/Link.jsp" />
 <h2>로그인페이지</h2>
 <%--
 아이디 : <%= session.getAttribute("UserId") %><br/>
