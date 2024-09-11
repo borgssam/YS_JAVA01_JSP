@@ -139,4 +139,25 @@ public class BoardDAO extends JDBConnect {
 		return dto;
 	}
 
+	
+	//게시물 삭제
+	public int deletePost(String num) {
+		int result = 0;
+		String query = "DELETE FROM board WHERE num=?";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			result = psmt.executeUpdate();
+			
+		} catch(Exception e) {
+			System.out.println("게시물 삭제 실패");
+			e.printStackTrace();
+			
+			
+		}
+		
+		return result;
+	}
+	
+	
 }
