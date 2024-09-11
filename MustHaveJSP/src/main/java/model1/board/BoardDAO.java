@@ -74,7 +74,7 @@ public class BoardDAO extends JDBConnect {
 		return bbs;
 	
 	}
-	
+	//게시글 쓰기
 	public int insertBoard(BoardDTO dto) {
 		int result = 0;		
 		String query ="INSERT INTO board ( num,title,content,id,visitcount) VALUES (SEQ_BOARD_NUM.NEXTVAL,?,?,?,0)";
@@ -86,13 +86,57 @@ public class BoardDAO extends JDBConnect {
 			
 			result = psmt.executeUpdate();					
 		} catch(Exception e) {
+			
 			System.out.println("게시물 입력중 예외발생");
 			e.printStackTrace();			
-		}
-		
+		}		
 		return result;
 		
 	}
 	
+	//게시글 조회수 올리기
+	public void updateVisitCount(String num) {
+		//쿼리문 작성
+		String query = "UPDATE board SET "
+					 + "visitcount = visitcount + 1 "
+					 + "WHERE num = ? ";		
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			psmt.executeQuery();			
+		} catch(Exception e) {
+			System.out.println("게시물 조회수 올리기 실패");
+			e.printStackTrace();
+		}
+	}
+	
+	//게시물 읽어오기
+	public BoardDTO selectView(String num) {
+		BoardDTO dto = new BoardDTO();
+		//쿼리문
+		String query = "SELECT num, title, content, b.id, m.name, postdate,visitcount " 
+					 + "FROM board b " 
+					 + "JOIN member m on b.id=m.id " 
+					 + "WHERE num= ? ";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, num);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setVisitcount(rs.getString("visitcount"));
+			}			
+		} catch(Exception e) {
+			System.out.println("상세보기용 데이터 얻기 실패");
+			e.printStackTrace();
+		}
+		
+		return dto;
+	}
 
 }
