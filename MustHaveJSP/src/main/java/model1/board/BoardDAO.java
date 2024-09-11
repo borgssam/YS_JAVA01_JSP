@@ -74,6 +74,45 @@ public class BoardDAO extends JDBConnect {
 		return bbs;
 	
 	}
+	//검색조건에 맞는 데이터목록
+	public List<BoardDTO> selectListPage(Map<String,Object> map) {
+		List<BoardDTO> bbs = new Vector<BoardDTO>();
+		
+		String query = "SELECT num,title,content,b.id, m.name ,postdate,visitcount "
+					 + "FROM board b "
+					 + "JOIN member m on b.id = m.id ";
+		
+		if (map.get("searchWord") != null) {
+			query += " WHERE " + map.get("searchField") + " " +
+		             " LIKE '%" + map.get("searchWord")+"%' ";    
+		}			
+		query += " ORDER BY num DESC ";
+		query += " offset " + map.get("start") 
+		      + " rows fetch next "+ map.get("listsize")
+		      + " rows only ";
+
+		
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setNum(rs.getString("num"));
+				dto.setTitle(rs.getString("title"));
+				dto.setContent(rs.getString("content"));
+				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));
+				dto.setPostdate(rs.getDate("postdate"));
+				dto.setVisitcount(rs.getString("visitcount"));			
+				bbs.add(dto);		
+			}		
+		} catch(Exception e) {
+			System.out.println("게시판 목록을 읽어오다가 에러발생");
+			e.printStackTrace();			
+		}		
+		return bbs;
+	
+	}
 	//게시글 쓰기
 	public int insertBoard(BoardDTO dto) {
 		int result = 0;		

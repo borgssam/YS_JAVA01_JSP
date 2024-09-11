@@ -24,11 +24,6 @@ if(searchWord != null){
 // 검색조건에 따른 게시판 목록 수 읽기
 int totalCount = dao.selectCount(param);
 out.print("검색결과:"+totalCount);
-// 검색조건에 따른 게시판 목록 데이터 읽기
-List<BoardDTO> boardLists = dao.selectList(param);
-
-// db접속해제
-dao.close();
 
 %>  
 <%
@@ -39,15 +34,29 @@ if(tempIndex != null && !tempIndex.equals("")) {
 	NavIndex = Integer.parseInt(tempIndex);
 }
 // List_Size
+int listSize = Integer.parseInt(application.getInitParameter("LIST_SIZE"));
 // Navi_Size
+int naviSize = Integer.parseInt(application.getInitParameter("NAVI_SIZE"));
 
-int startNavIndex = 1;
-int endNavIndex = 10;
-int prevNavIndex = -1;
-int nextNavIndex = 11;
+int maxNavIndex = (int)Math.ceil((double)totalCount/listSize);
+
+int startNavIndex = ((NavIndex/naviSize)*naviSize)+1;
+int endNavIndex = Math.min(startNavIndex+naviSize-1, maxNavIndex);
+
+int prevNavIndex =  Math.max(startNavIndex -1, 1);
+int nextNavIndex = Math.min(endNavIndex+1, maxNavIndex) ;
 int minNavIndex = 1;
-int maxNavIndex = 20;
 
+int startNum = ((NavIndex-1)*listSize)+1;
+int endNum = Math.min( startNum + listSize, totalCount);
+
+param.put("start", startNum-1);	
+param.put("listsize", listSize);	
+//검색조건에 따른 게시판 목록 데이터 읽기
+List<BoardDTO> boardLists = dao.selectListPage(param);
+
+//db접속해제
+dao.close();
 %>  
     
     

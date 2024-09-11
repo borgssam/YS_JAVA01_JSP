@@ -17,12 +17,12 @@
   <context-param>
   
   <param-name>NAVI_SIZE</param-name>
-  <param-value>5</param-value>
+  <param-value>10</param-value>
   </context-param>
   
   <context-param>  
   <param-name>LIST_SIZE</param-name>
-  <param-value>10</param-value>
+  <param-value>20</param-value>
   </context-param>
 
   <!-- DB접속정보 -->
