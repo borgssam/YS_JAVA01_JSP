@@ -7,38 +7,24 @@
 	out.print(num);
 	//DAO생성 DB연결
 	BoardDAO dao = new BoardDAO(application);
-	//조회수증가
-	dao.updateVisitCount(num);
 	
 	//게시물 가져오기
 	BoardDTO dto = dao.selectView(num);	
 	
 	//DB 연결끊기
 	dao.close();
-
-%>    
+%>   
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-function deletePost(){
-	//정말삭제할래? 메지시
-	var confirmed = confirm("정말로 삭세하시겠습니가?");
-	//삭제 처릴할 경로 지정
-	if(confirmed){
-		var form = document.writeFrm;
-		form.method = "post";
-		form.action = "DeleteProcess.jsp";
-		form.submit();		
-	}
-}
-</script>
 </head>
 <body>
+
 <jsp:include page="../common/Link.jsp" />
-<h2>회원제게시판 - 상세보기(View)</h2>
+<h2>회원제게시판 - 수정하기(Edit)</h2>
 <form name="writeFrm">
 <input type="text" name="num" value="<%=num %>"/>
 <table border="1" width="90%">
@@ -56,11 +42,18 @@ function deletePost(){
 	</tr>
 	<tr>
 		<td>제목</td>
-		<td colspan="3"><%=dto.getTitle() %></td>
+		<td colspan="3">
+		<input type="text" name="title" style="width:90%;" 
+		value="<%=dto.getTitle() %>"/>
+		</td>
 	</tr>
 	<tr>
 		<td>내용</td>
-		<td colspan="3"><%=dto.getContent().replace("\r\n","<br/>") %></td>
+		<td colspan="3">
+		<textarea name="content" style="width:90%; height:100px;">
+		<%=dto.getContent()%></textarea>
+		
+		</td>
 	</tr>
 	<tr>
 		<td colspan="4" align="center">
@@ -72,8 +65,8 @@ function deletePost(){
 		
 		%>
 		
-			<button type="button" onclick="location.href='Edit.jsp?num=<%=dto.getNum()%>'">수정하기</button>
-			<button type="button" onclick="deletePost();">삭제하기</button>
+			<button type="button" onclick="">저장하기</button>
+			<button type="button" onclick="">다시입력</button>
 		<%
 		}
 		
@@ -86,7 +79,6 @@ function deletePost(){
 </table>
 
 </form>
-
 
 </body>
 </html>
