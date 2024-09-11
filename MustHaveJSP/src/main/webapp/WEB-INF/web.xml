@@ -14,6 +14,16 @@
   <param-name>INIT_PARAM</param-name>
   <param-value>web.xml에 저장한초기값</param-value>  
   </context-param>
+  <context-param>
+  
+  <param-name>NAVI_SIZE</param-name>
+  <param-value>5</param-value>
+  </context-param>
+  
+  <context-param>  
+  <param-name>LIST_SIZE</param-name>
+  <param-value>10</param-value>
+  </context-param>
 
   <!-- DB접속정보 -->
   <context-param>

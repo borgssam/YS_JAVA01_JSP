@@ -29,7 +29,26 @@ List<BoardDTO> boardLists = dao.selectList(param);
 
 // db접속해제
 dao.close();
-%>    
+
+%>  
+<%
+//현재 Navi Index
+int NavIndex = 1;
+String tempIndex = request.getParameter("NavIndex");
+if(tempIndex != null && !tempIndex.equals("")) {
+	NavIndex = Integer.parseInt(tempIndex);
+}
+// List_Size
+// Navi_Size
+
+int startNavIndex = 1;
+int endNavIndex = 10;
+int prevNavIndex = -1;
+int nextNavIndex = 11;
+int minNavIndex = 1;
+int maxNavIndex = 20;
+
+%>  
     
     
 <!DOCTYPE html>
@@ -100,7 +119,24 @@ if(boardLists.isEmpty()) {
 </table>
 
 <table border="1" width="90%">
-<tr align="right"><td ><button type="button" onclick="location.href='Write.jsp'">글쓰기</button> </td></tr>
+<tr align="right">
+<td align="center">
+<a href="List.jsp?NavIndex=<%=minNavIndex %>" > [처음]</a> &nbsp; 
+<a href="List.jsp?NavIndex=<%=prevNavIndex %>" > [이전페이지] </a>
+<%
+	for(int i = startNavIndex; i <= endNavIndex; i++) {
+		if( i == NavIndex ) {
+			out.print(i+"&nbsp;");
+		} else {
+			out.print("<a href='List.jsp?NavIndex="+i+"'>"+i+"</a>&nbsp;");			
+		}
+	}
+%>
+<a href="List.jsp?NavIndex=<%=nextNavIndex %>" > [다음페이지] </a>&nbsp; 
+<a href="List.jsp?NavIndex=<%=maxNavIndex %>">[마지막페이지]</a>
+</td>
+<td ><button type="button" onclick="location.href='Write.jsp'">글쓰기</button> </td>
+</tr>
 </table>
 </body>
 </html>
