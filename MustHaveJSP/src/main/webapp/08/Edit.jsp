@@ -25,7 +25,7 @@
 
 <jsp:include page="../common/Link.jsp" />
 <h2>회원제게시판 - 수정하기(Edit)</h2>
-<form name="writeFrm">
+<form name="writeFrm" method="post" action="EditProcess.jsp">
 <input type="text" name="num" value="<%=num %>"/>
 <table border="1" width="90%">
 	<tr>
@@ -51,8 +51,7 @@
 		<td>내용</td>
 		<td colspan="3">
 		<textarea name="content" style="width:90%; height:100px;">
-		<%=dto.getContent()%></textarea>
-		
+		<%=dto.getContent()%></textarea>		
 		</td>
 	</tr>
 	<tr>
@@ -65,8 +64,8 @@
 		
 		%>
 		
-			<button type="button" onclick="">저장하기</button>
-			<button type="button" onclick="">다시입력</button>
+			<button type="submit" >저장하기</button>
+			<button type="reset" >다시입력</button>
 		<%
 		}
 		

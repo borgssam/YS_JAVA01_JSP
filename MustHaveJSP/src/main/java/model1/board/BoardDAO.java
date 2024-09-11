@@ -152,11 +152,37 @@ public class BoardDAO extends JDBConnect {
 		} catch(Exception e) {
 			System.out.println("게시물 삭제 실패");
 			e.printStackTrace();
-			
-			
 		}
 		
 		return result;
+	}
+	
+	//게시물 수정하기
+	public int updateEdit(BoardDTO dto) {
+		int iresult = 0;
+		//쿼리
+		String query = "UPDATE board SET " 
+					 + "title = ?, " 
+					 + "content = ? " 
+					 + "WHERE num = ? ";	
+		try {
+			//
+			//수정값적용
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, dto.getTitle());
+			psmt.setString(2, dto.getContent());
+			psmt.setString(3, dto.getNum());			
+			
+			//db저장
+			iresult = psmt.executeUpdate();			
+			
+		} catch(Exception e) {
+			System.out.print("게시물 수정 실패");
+			e.printStackTrace();
+			
+		}
+		
+		return iresult;
 	}
 	
 	
