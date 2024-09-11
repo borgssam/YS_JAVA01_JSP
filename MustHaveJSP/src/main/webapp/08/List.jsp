@@ -85,7 +85,7 @@ if(boardLists.isEmpty()) {
 %>
 <tr>
 	<td><%=vitualNum %></td>
-	<td><%= dto.getTitle() %></td>
+	<td><a href="View.jsp?num=<%=dto.getNum() %>"><%= dto.getTitle() %></a></td>
 	<td><%= dto.getName() %></td>
 	<td><%= dto.getVisitcount() %></td>
 	<td><%= dto.getPostdate() %></td>
